@@ -16,7 +16,7 @@ def moveFiles(file_list):
 
             if date > (current-timedelta(1)):
                 shutil.copy(source + '/' + each, destination)
-                print("\tMoved {}, to {}.\n".format(file_list, destination))
+                print("\tMoved {}, to {}.\n".format(each, destination))
 
 def load_gui():
     frame = ttk.Frame(root)  

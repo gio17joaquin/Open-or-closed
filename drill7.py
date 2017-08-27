@@ -29,15 +29,9 @@ def moveFiles(file_list):
             mtime = os.path.getmtime(source + '/' + each)
             date = datetime.fromtimestamp(mtime)
 
-            if (test != 0):
-                if date > datetime.strptime(generateLastTransfer()[0][0],
-                                           '%Y-%m-%d %H:%M:%S:%f'):
+            if date > (current-timedelta(1)):
                     shutil.copy(source + '/' + each, destination)
-
-            else:
-                if date > (current-timedelta(1)):
-                    shutil.copy(source + '/' + each, destination)
-                    print("\tMoved {}, to {}.\n".format(file_list, destination))
+                    print("\tMoved {}, to {}.\n".format(each, destination))
                     
     c.execute("INSERT INTO transfer_info VALUES (?,?,?)",(current,source,destination))
     conn.commit()
@@ -73,8 +67,6 @@ def load_gui():
     global lastTransferEntry
     lastTransferEntry = ttk.Entry(frame,width=50,justify = 'center')
     lastTransferEntry.grid(row=5,column=0,columnspan=2)
-    lastTransferEntry.insert(0,generateLastTransfer()[0][0])
-
     
 def fetchDir():
     direct = filedialog.askdirectory()

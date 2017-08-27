@@ -16,7 +16,7 @@ def moveFiles(file_list):
 
         if date > (current-timedelta(1)) and each.endswith('.txt'):
             shutil.move(source + '/' + each, destination)
-            print("\tMoved {}, to {}.\n".format(file_list, destination))
+            print("\tMoved {}, to {}.\n".format(each, destination))
 
 
 moveFiles(files)
